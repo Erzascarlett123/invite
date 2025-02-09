@@ -6,11 +6,7 @@ import {
   FaMoneyBillWave,
 } from "react-icons/fa";
 import Image from "../assets/images/masjid.jpeg";
-
-// Contoh gambar penceramah, ganti dengan path gambar yang sesuai
 import SpeakerImage from "../assets/images/ustadz-abdul_220106140902-349.jpg";
-
-// Import gambar tamu special (pastikan path gambar sudah sesuai)
 import SpecialGuest1 from "../assets/images/alusan-nu-ieu.jpeg";
 import SpecialGuest2 from "../assets/images/ustadz-abi.jpeg";
 import SpecialGuest3 from "../assets/images/budi.jpeg";
@@ -45,10 +41,9 @@ const LandingPage: React.FC = () => {
         className="relative p-8 bg-cover bg-center text-white"
         style={{ backgroundImage: `url(${Image})` }}
       >
-        {/* Overlay dengan background lebih gelap */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black opacity-75"></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
-          {/* Membungkus teks undangan dalam sebuah kotak */}
           <div className="animate-on-scroll p-8 bg-opacity-90 rounded-lg shadow-xl">
             <h1 className="text-5xl font-bold text-white leading-tight mb-4">
               Undangan Maulid Nabi
@@ -70,9 +65,11 @@ const LandingPage: React.FC = () => {
       {/* Section Info Penceramah */}
       <section className="py-16 bg-gray-200 animate-on-scroll">
         <div className="container mx-auto px-4">
-        <h2 className="text-3xl text-center font-bold mb-8">Informasi Penceramah Kali Ini</h2>
+          <h2 className="text-3xl text-center font-bold mb-8">
+            Informasi Penceramah Kali Ini
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Kolom Kiri: Info Singkat Penceramah yang sticky */}
+            {/* Kolom Kiri */}
             <div className="md:sticky md:top-8">
               <div className="p-6 bg-white rounded-lg shadow-xl">
                 <img
@@ -82,17 +79,17 @@ const LandingPage: React.FC = () => {
                 />
                 <h2 className="text-2xl font-bold">Ustadz Abdul Somad</h2>
                 <p className="mt-2">
-                 Ustadz Abdul Somad adalah penceramah yang berwibawa dan penuh inspirasi. 
-                 Beliau dikenal karena kemampuannya menyampaikan tausiyah dengan bahasa yang lugas dan mendalam, 
-                 sehingga mampu menyentuh hati banyak pendengar. Tausiyah beliau menekankan pentingnya keimanan, 
-                 ketaqwaan, dan persatuan dalam kehidupan bermasyarakat.
+                  Ustadz Abdul Somad adalah penceramah yang berwibawa dan penuh
+                  inspirasi. Beliau dikenal karena kemampuannya menyampaikan tausiyah
+                  dengan bahasa yang lugas dan mendalam, sehingga mampu menyentuh hati
+                  banyak pendengar. Tausiyah beliau menekankan pentingnya keimanan,
+                  ketaqwaan, dan persatuan dalam kehidupan bermasyarakat.
                 </p>
               </div>
             </div>
-            {/* Kolom Kanan: Video YouTube dan Info Detail */}
+            {/* Kolom Kanan */}
             <div>
               <div className="p-6 bg-white rounded-lg shadow-xl">
-                {/* Kotak Video YouTube */}
                 <div className="mb-6">
                   <iframe
                     className="w-full h-64 md:h-80 rounded-lg shadow-lg"
@@ -103,13 +100,17 @@ const LandingPage: React.FC = () => {
                     allowFullScreen
                   ></iframe>
                 </div>
-                <h2 className="text-2xl font-bold mb-2">Informasi Ustadz Abdul Somad</h2>
+                <h2 className="text-2xl font-bold mb-2">
+                  Informasi Ustadz Abdul Somad
+                </h2>
                 <p>
-                  Ustadz Abdul Somad telah berdakwah selama lebih dari 20 tahun, menjadi salah satu 
-                  penceramah terkemuka di Indonesia. Beliau menyampaikan pesan-pesan agama Islam dengan 
-                  penuh semangat dan mendalam, yang mampu memberi pencerahan kepada banyak umat. 
-                  Beberapa topik yang sering beliau angkat meliputi pentingnya menjaga akhlak mulia,
-                   memperkuat ukhuwah Islamiyah, serta memahami prinsip-prinsip keadilan dalam ajaran Islam.
+                  Ustadz Abdul Somad telah berdakwah selama lebih dari 20 tahun,
+                  menjadi salah satu penceramah terkemuka di Indonesia. Beliau
+                  menyampaikan pesan-pesan agama Islam dengan penuh semangat dan
+                  mendalam, yang mampu memberi pencerahan kepada banyak umat. Beberapa
+                  topik yang sering beliau angkat meliputi pentingnya menjaga akhlak mulia,
+                  memperkuat ukhuwah Islamiyah, serta memahami prinsip-prinsip keadilan dalam
+                  ajaran Islam.
                 </p>
               </div>
             </div>
@@ -120,8 +121,10 @@ const LandingPage: React.FC = () => {
       {/* Section Tamu Special */}
       <section className="py-16 bg-white animate-on-scroll">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Tamu-tamu Special</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Tamu-tamu Special
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {/* Tamu Special 1 */}
             <div className="bg-gray-100 p-6 rounded-xl shadow-xl">
               <img
@@ -144,11 +147,14 @@ const LandingPage: React.FC = () => {
               />
               <h3 className="text-xl font-bold mb-2">Ustadz Abi Azkakia</h3>
               <p className="text-gray-700">
-                Beliau dikenal karena dakwahnya yang unik, yaitu menyampaikan pesan keislaman sambil bermain Mobile Legends. Pendekatan kreatifnya ini berhasil menjembatani dunia hiburan digital dan pesan keislaman, sehingga mampu menarik perhatian generasi muda, terutama para gamer.
+                Beliau dikenal karena dakwahnya yang unik, yaitu menyampaikan pesan
+                keislaman sambil bermain Mobile Legends. Pendekatan kreatifnya ini
+                berhasil menjembatani dunia hiburan digital dan pesan keislaman,
+                sehingga mampu menarik perhatian generasi muda, terutama para gamer.
               </p>
             </div>
             {/* Tamu Special 3 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow-xl">
+            <div className="bg-gray-100 p-6 rounded-xl shadow-xl">
               <img
                 src={SpecialGuest3}
                 alt="Tamu Special 3"
@@ -156,7 +162,10 @@ const LandingPage: React.FC = () => {
               />
               <h3 className="text-xl font-bold mb-2">Budi Doremi</h3>
               <p className="text-gray-700">
-              Budi Doremi adalah seorang dai muda yang mulai dikenal melalui kehadirannya di media sosial. Dengan gaya penyampaian yang santai dan modern, beliau mengemas pesan-pesan keislaman secara kreatif sehingga mudah diterima oleh generasi muda
+                Budi Doremi adalah seorang dai muda yang mulai dikenal melalui
+                kehadirannya di media sosial. Dengan gaya penyampaian yang santai dan
+                modern, beliau mengemas pesan-pesan keislaman secara kreatif sehingga
+                mudah diterima oleh generasi muda.
               </p>
             </div>
           </div>
@@ -185,8 +194,9 @@ const LandingPage: React.FC = () => {
             <h2 className="text-3xl font-semibold">Tempat Acara</h2>
           </div>
           <p className="text-lg ml-12">
-            Masjid Al-Hikmah <br />
-            Jalan Raya No. 45, Jakarta
+            SMK INFOKOM BOGOR <br />
+            Jl. Letjen Ibrahim Adjie No.178, RT.03/RW.08, Sindangbarang, Kec. Bogor Bar.,
+            Kota Bogor, Jawa Barat 16117
           </p>
         </div>
       </div>
@@ -199,11 +209,11 @@ const LandingPage: React.FC = () => {
           </h2>
           <iframe
             className="w-full h-64 md:h-80 rounded-lg shadow-lg"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.4874856720177!2d106.87001951500807!3d-6.201433962703221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69919fbe5e741d%3A0x60068e02f46c3b25!2sMasjid%20Al-Hikmah!5e0!3m2!1sid!2sid!4v1674481932087!5m2!1sid!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.5318670904594!2d106.76465207499344!3d-6.58060459341292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4f906e40827%3A0x6b93a4462670547c!2sSMK%20Infokom%20Kota%20Bogor!5e0!3m2!1sid!2sid!4v1739088231598!5m2!1sid!2sid"
             allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Google Maps Masjid Al-Hikmah"
+            title="Google Maps SMK INFOKOM BOGOR"
           ></iframe>
         </div>
       </div>
@@ -216,7 +226,8 @@ const LandingPage: React.FC = () => {
             <h2 className="text-3xl font-semibold">Donasi atau Kado</h2>
           </div>
           <p className="text-lg ml-12">
-            Untuk mendukung kelancaran acara Maulid Nabi Muhammad SAW, Bapak/Ibu dapat memberikan donasi atau kado.
+            Untuk mendukung kelancaran acara Maulid Nabi Muhammad SAW, Bapak/Ibu dapat
+            memberikan donasi atau kado.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             {/* Donasi */}
@@ -238,7 +249,8 @@ const LandingPage: React.FC = () => {
                 <h3 className="text-xl font-semibold">Kado</h3>
               </div>
               <p className="text-sm mt-4">
-                Silakan bawa kado langsung ke lokasi acara atau hubungi panitia untuk pengambilan kado Anda.
+                Silakan bawa kado langsung ke lokasi acara atau hubungi panitia untuk
+                pengambilan kado Anda.
               </p>
             </div>
           </div>
