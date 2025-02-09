@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import swal from "sweetalert";
 import {
   FaCalendarAlt,
   FaMapMarkerAlt,
@@ -11,7 +12,20 @@ import SpecialGuest1 from "../assets/images/alusan-nu-ieu.jpeg";
 import SpecialGuest2 from "../assets/images/ustadz-abi.jpeg";
 import SpecialGuest3 from "../assets/images/budi.jpeg";
 
+
+
 const LandingPage: React.FC = () => {
+  // SweetAlert ketika user baru memasuki website
+  useEffect(() => {
+    swal({
+      title: "Utk Pak Erwin",
+      text: "Maaf saya menggunakan Vercel untuk metode hostingnya, karena saya sudah berusaha untuk hosting di GitHub dan ga berhasil2, berujung pusing.",
+      icon: "info",
+      buttons: { confirm: "OK" },
+    });
+  }, []);
+
+  // Animasi saat scroll
   useEffect(() => {
     const handleScrollAnimation = () => {
       const elements = document.querySelectorAll(".animate-on-scroll");
