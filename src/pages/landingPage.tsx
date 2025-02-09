@@ -149,8 +149,9 @@ const LandingPage: React.FC = () => {
               />
               <h3 className="text-xl font-bold mb-2">Reza Satria Septian</h3>
               <p className="text-gray-700">
-                Deskripsi singkat tentang Tamu Special 1. Beliau dikenal karena
-                kontribusinya yang luar biasa dalam bidang pendidikan.
+                Ia dikenal sebagai anak yang biasa saja dalam bidang apapun, netral dalam segala hal. Harus ada pendorong
+                agar ia memiliki ambisi kuat, dan pendengar yang baik. Ia dikenal juga sebagai seseorang dengan hobi memainkan gitar dan menyanyi,
+                bukan pop saja, rock, metal, hingga lagu2 shalawat pun ia mainkan.
               </p>
             </div>
             {/* Tamu Special 2 */}
