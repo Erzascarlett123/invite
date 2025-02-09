@@ -8,7 +8,12 @@ import {
 import Image from "../assets/images/masjid.jpeg";
 
 // Contoh gambar penceramah, ganti dengan path gambar yang sesuai
-import SpeakerImage from "../assets/images/home.png";
+import SpeakerImage from "../assets/images/ustadz-abdul_220106140902-349.jpg";
+
+// Import gambar tamu special (pastikan path gambar sudah sesuai)
+import SpecialGuest1 from "../assets/images/alusan-nu-ieu.jpeg";
+import SpecialGuest2 from "../assets/images/ustadz-abi.jpeg";
+import SpecialGuest3 from "../assets/images/budi.jpeg";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -44,7 +49,7 @@ const LandingPage: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-75"></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
           {/* Membungkus teks undangan dalam sebuah kotak */}
-          <div className="animate-on-scroll p-8  bg-opacity-90 rounded-lg shadow-xl">
+          <div className="animate-on-scroll p-8 bg-opacity-90 rounded-lg shadow-xl">
             <h1 className="text-5xl font-bold text-white leading-tight mb-4">
               Undangan Maulid Nabi
             </h1>
@@ -56,7 +61,7 @@ const LandingPage: React.FC = () => {
               penuh rasa syukur.
             </p>
             <p className="text-lg text-white">
-            Semoga kehadiran Bapak/Ibu membawa keberkahan.
+              Semoga kehadiran Bapak/Ibu membawa keberkahan.
             </p>
           </div>
         </div>
@@ -65,6 +70,7 @@ const LandingPage: React.FC = () => {
       {/* Section Info Penceramah */}
       <section className="py-16 bg-gray-200 animate-on-scroll">
         <div className="container mx-auto px-4">
+        <h2 className="text-3xl text-center font-bold mb-8">Informasi Penceramah Kali Ini</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Kolom Kiri: Info Singkat Penceramah yang sticky */}
             <div className="md:sticky md:top-8">
@@ -74,11 +80,12 @@ const LandingPage: React.FC = () => {
                   alt="Penceramah"
                   className="rounded-lg w-full mb-4"
                 />
-                <h2 className="text-2xl font-bold">Ustadz Ahmad Ridwan</h2>
+                <h2 className="text-2xl font-bold">Ustadz Abdul Somad</h2>
                 <p className="mt-2">
-                  Ustadz Ahmad Ridwan adalah penceramah yang inspiratif dan
-                  berwawasan luas. Beliau telah menyampaikan banyak tausiyah
-                  mengenai kebaikan, toleransi, dan nilai-nilai kemanusiaan.
+                 Ustadz Abdul Somad adalah penceramah yang berwibawa dan penuh inspirasi. 
+                 Beliau dikenal karena kemampuannya menyampaikan tausiyah dengan bahasa yang lugas dan mendalam, 
+                 sehingga mampu menyentuh hati banyak pendengar. Tausiyah beliau menekankan pentingnya keimanan, 
+                 ketaqwaan, dan persatuan dalam kehidupan bermasyarakat.
                 </p>
               </div>
             </div>
@@ -89,23 +96,68 @@ const LandingPage: React.FC = () => {
                 <div className="mb-6">
                   <iframe
                     className="w-full h-64 md:h-80 rounded-lg shadow-lg"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    src="https://www.youtube.com/embed/0HiNAOKAF9Y?si=P33OH4AXJY4eoBIQ"
                     title="Video Penceramah"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                 </div>
-                <h2 className="text-2xl font-bold mb-2">Informasi Penceramah</h2>
+                <h2 className="text-2xl font-bold mb-2">Informasi Ustadz Abdul Somad</h2>
                 <p>
-                  Beliau memiliki pengalaman lebih dari 15 tahun dalam berdakwah,
-                  menyampaikan pesan-pesan keislaman dengan penuh semangat dan
-                  inspirasi. Topik yang sering diangkat meliputi keutamaan
-                  berakhlak mulia, pentingnya persaudaraan, dan nilai-nilai keadilan
-                  dalam kehidupan. Kunjungi situs resmi beliau untuk mengetahui
-                  lebih lanjut tentang kegiatan dakwah dan jadwal ceramah.
+                  Ustadz Abdul Somad telah berdakwah selama lebih dari 20 tahun, menjadi salah satu 
+                  penceramah terkemuka di Indonesia. Beliau menyampaikan pesan-pesan agama Islam dengan 
+                  penuh semangat dan mendalam, yang mampu memberi pencerahan kepada banyak umat. 
+                  Beberapa topik yang sering beliau angkat meliputi pentingnya menjaga akhlak mulia,
+                   memperkuat ukhuwah Islamiyah, serta memahami prinsip-prinsip keadilan dalam ajaran Islam.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Tamu Special */}
+      <section className="py-16 bg-white animate-on-scroll">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Tamu-tamu Special</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Tamu Special 1 */}
+            <div className="bg-gray-100 p-6 rounded-xl shadow-xl">
+              <img
+                src={SpecialGuest1}
+                alt="Tamu Special 1"
+                className="rounded-lg w-full mb-4"
+              />
+              <h3 className="text-xl font-bold mb-2">Reza Satria Septian</h3>
+              <p className="text-gray-700">
+                Deskripsi singkat tentang Tamu Special 1. Beliau dikenal karena
+                kontribusinya yang luar biasa dalam bidang pendidikan.
+              </p>
+            </div>
+            {/* Tamu Special 2 */}
+            <div className="bg-gray-100 p-6 rounded-xl shadow-xl">
+              <img
+                src={SpecialGuest2}
+                alt="Tamu Special 2"
+                className="rounded-lg w-full mb-4"
+              />
+              <h3 className="text-xl font-bold mb-2">Ustadz Abi Azkakia</h3>
+              <p className="text-gray-700">
+                Beliau dikenal karena dakwahnya yang unik, yaitu menyampaikan pesan keislaman sambil bermain Mobile Legends. Pendekatan kreatifnya ini berhasil menjembatani dunia hiburan digital dan pesan keislaman, sehingga mampu menarik perhatian generasi muda, terutama para gamer.
+              </p>
+            </div>
+            {/* Tamu Special 3 */}
+            <div className="bg-gray-100 p-6 rounded-lg shadow-xl">
+              <img
+                src={SpecialGuest3}
+                alt="Tamu Special 3"
+                className="rounded-lg w-full mb-4"
+              />
+              <h3 className="text-xl font-bold mb-2">Budi Doremi</h3>
+              <p className="text-gray-700">
+              Budi Doremi adalah seorang dai muda yang mulai dikenal melalui kehadirannya di media sosial. Dengan gaya penyampaian yang santai dan modern, beliau mengemas pesan-pesan keislaman secara kreatif sehingga mudah diterima oleh generasi muda
+              </p>
             </div>
           </div>
         </div>
@@ -164,8 +216,7 @@ const LandingPage: React.FC = () => {
             <h2 className="text-3xl font-semibold">Donasi atau Kado</h2>
           </div>
           <p className="text-lg ml-12">
-            Untuk mendukung kelancaran acara Maulid Nabi Muhammad SAW,
-            Bapak/Ibu dapat memberikan donasi atau kado.
+            Untuk mendukung kelancaran acara Maulid Nabi Muhammad SAW, Bapak/Ibu dapat memberikan donasi atau kado.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             {/* Donasi */}
@@ -187,8 +238,7 @@ const LandingPage: React.FC = () => {
                 <h3 className="text-xl font-semibold">Kado</h3>
               </div>
               <p className="text-sm mt-4">
-                Silakan bawa kado langsung ke lokasi acara atau hubungi panitia
-                untuk pengambilan kado Anda.
+                Silakan bawa kado langsung ke lokasi acara atau hubungi panitia untuk pengambilan kado Anda.
               </p>
             </div>
           </div>
