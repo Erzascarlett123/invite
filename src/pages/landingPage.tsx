@@ -21,9 +21,10 @@ const LandingPage: React.FC = () => {
       title: "Utk Pak Erwin",
       text: "Maaf saya menggunakan Vercel untuk metode hostingnya, karena saya sudah berusaha untuk hosting di GitHub dan ga berhasil2, berujung pusing.",
       icon: "info",
-      buttons: { confirm: "OK" },
+      buttons: { confirm: { text: "OK" } },
     });
   }, []);
+  
 
   // Animasi saat scroll
   useEffect(() => {
