@@ -72,13 +72,13 @@ const LandingPage: React.FC = () => {
                   alt="Penceramah"
                   className="rounded-lg w-full mb-4"
                 />
-                <h2 className="text-2xl font-bold">Ustadz Abdul Somad</h2>
+                <h2 className="text-2xl font-bold">Sekolah Poetra Mandiri</h2>
                 <p className="mt-2">
-                  Ustadz Abdul Somad adalah penceramah yang berwibawa dan penuh
-                  inspirasi. Beliau dikenal karena kemampuannya menyampaikan tausiyah
-                  dengan bahasa yang lugas dan mendalam, sehingga mampu menyentuh hati
-                  banyak pendengar. Tausiyah beliau menekankan pentingnya keimanan,
-                  ketaqwaan, dan persatuan dalam kehidupan bermasyarakat.
+                  Sekolah Homeschooling Poetra Mandiri adalah lembaga pendidikan alternatif yang berdiri untuk menjawab kebutuhan belajar anak-anak dengan pendekatan yang lebih personal, fleksibel, dan menyeluruh. Kami melayani peserta didik dari tingkat SD, SMP, hingga SMA, termasuk anak-anak berkebutuhan khusus atau disabilitas.
+                </p>
+                <br></br>
+                <p>
+                  Melalui program pembelajaran yang di sesuaikan dengan pontensi yang di miliki masing-masing siswa/i, sekola ini menciptakan suasana belajar yang nyaman, dan menyenangkan. Didukung juga oleh tenaga pendidik yang berpengalaman dan profesional serta kurikulum yang inovatif, sekolah Homeschooling Poetra Mandiri juga mampu membentuk karakter generasi yang mandiri, dan mampu bersaing secara global.
                 </p>
               </div>
             </div>
