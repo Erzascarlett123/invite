@@ -1,16 +1,7 @@
 import { useEffect } from "react";
 
-import {
-  FaCalendarAlt,
-  FaMapMarkerAlt,
-  FaGift,
-  FaMoneyBillWave,
-} from "react-icons/fa";
 import Image from "../assets/images/harep.jpeg";
 import SpeakerImage from "../assets/images/ustadz-abdul_220106140902-349.jpg";
-import SpecialGuest1 from "../assets/images/alusan-nu-ieu.jpeg";
-import SpecialGuest2 from "../assets/images/ustadz-abi.jpeg";
-import SpecialGuest3 from "../assets/images/budi.jpeg";
 
 
 
@@ -122,90 +113,6 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Section Tamu Special */}
-      <section className="py-16 bg-white animate-on-scroll">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Tamu-tamu Special
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {/* Tamu Special 1 */}
-            <div className="bg-gray-100 p-6 rounded-xl shadow-xl">
-              <img
-                src={SpecialGuest1}
-                alt="Tamu Special 1"
-                className="rounded-lg w-full mb-4"
-              />
-              <h3 className="text-xl font-bold mb-2">Reza Satria Septian</h3>
-              <p className="text-gray-700">
-                Ia dikenal sebagai anak yang biasa saja dalam bidang apapun, netral dalam segala hal. Harus ada pendorong
-                agar ia memiliki ambisi kuat, dan pendengar yang baik. Ia dikenal juga sebagai seseorang dengan hobi memainkan gitar dan menyanyi,
-                bukan pop saja, rock, metal, hingga lagu2 shalawat pun ia mainkan.
-              </p>
-            </div>
-            {/* Tamu Special 2 */}
-            <div className="bg-gray-100 p-6 rounded-xl shadow-xl">
-              <img
-                src={SpecialGuest2}
-                alt="Tamu Special 2"
-                className="rounded-lg w-full mb-4"
-              />
-              <h3 className="text-xl font-bold mb-2">Ustadz Abi Azkakia</h3>
-              <p className="text-gray-700">
-                Beliau dikenal karena dakwahnya yang unik, yaitu menyampaikan pesan
-                keislaman sambil bermain Mobile Legends. Pendekatan kreatifnya ini
-                berhasil menjembatani dunia hiburan digital dan pesan keislaman,
-                sehingga mampu menarik perhatian generasi muda, terutama para gamer.
-              </p>
-            </div>
-            {/* Tamu Special 3 */}
-            <div className="bg-gray-100 p-6 rounded-xl shadow-xl">
-              <img
-                src={SpecialGuest3}
-                alt="Tamu Special 3"
-                className="rounded-lg w-full mb-4"
-              />
-              <h3 className="text-xl font-bold mb-2">Budi Doremi</h3>
-              <p className="text-gray-700">
-                Budi Doremi adalah seorang dai muda yang mulai dikenal melalui
-                kehadirannya di media sosial. Dengan gaya penyampaian yang santai dan
-                modern, beliau mengemas pesan-pesan keislaman secara kreatif sehingga
-                mudah diterima oleh generasi muda.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Informasi Waktu Section */}
-      <div className="py-16 bg-white border-2 shadow-lg animate-on-scroll">
-        <div className="max-w-3xl mx-auto flex flex-col items-start gap-4 text-gray-800">
-          <div className="flex items-center gap-4">
-            <FaCalendarAlt className="text-indigo-500 text-4xl" />
-            <h2 className="text-3xl font-semibold">Waktu Acara</h2>
-          </div>
-          <p className="text-lg ml-12">
-            <strong>Sabtu, 15 Maret 2025</strong> <br />
-            Pukul: 09:00 AM
-          </p>
-        </div>
-      </div>
-
-      {/* Informasi Lokasi Section */}
-      <div className="py-16 bg-gray-200 border-2 shadow-lg animate-on-scroll">
-        <div className="max-w-3xl mx-auto flex flex-col items-start gap-4 text-gray-800">
-          <div className="flex items-center gap-4">
-            <FaMapMarkerAlt className="text-indigo-500 text-4xl" />
-            <h2 className="text-3xl font-semibold">Tempat Acara</h2>
-          </div>
-          <p className="text-lg ml-12">
-            SMK INFOKOM BOGOR <br />
-            Jl. Letjen Ibrahim Adjie No.178, RT.03/RW.08, Sindangbarang, Kec. Bogor Bar.,
-            Kota Bogor, Jawa Barat 16117
-          </p>
-        </div>
-      </div>
-
       {/* Google Maps Section */}
       <div className="py-16 bg-white animate-on-scroll">
         <div className="max-w-4xl mx-auto">
@@ -223,44 +130,6 @@ const LandingPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Donasi/Kado Section */}
-      <div className="py-16 bg-gray-200 border-2 shadow-lg animate-on-scroll">
-        <div className="max-w-4xl mx-auto flex flex-col items-start gap-6 text-gray-800">
-          <div className="flex items-center gap-4">
-            <FaGift className="text-indigo-500 text-4xl" />
-            <h2 className="text-3xl font-semibold">Donasi atau Kado</h2>
-          </div>
-          <p className="text-lg ml-12">
-            Untuk mendukung kelancaran acara Maulid Nabi Muhammad SAW, Bapak/Ibu dapat
-            memberikan donasi atau kado.
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            {/* Donasi */}
-            <div className="bg-gray-100 p-6 rounded-lg border-2 shadow-[4px_4px_0px_black] w-64">
-              <div className="flex items-center gap-4">
-                <FaMoneyBillWave className="text-indigo-500 text-3xl" />
-                <h3 className="text-xl font-semibold">Donasi Tunai</h3>
-              </div>
-              <p className="text-sm mt-4">
-                Kirim donasi Anda ke rekening: <br />
-                <strong>1234567890</strong> (Bank XYZ) <br />
-                a.n. Panitia Maulid Nabi
-              </p>
-            </div>
-            {/* Kado */}
-            <div className="bg-gray-100 p-6 rounded-lg border-2 shadow-[4px_4px_0px_black] w-64">
-              <div className="flex items-center gap-4">
-                <FaGift className="text-indigo-500 text-3xl" />
-                <h3 className="text-xl font-semibold">Kado</h3>
-              </div>
-              <p className="text-sm mt-4">
-                Silakan bawa kado langsung ke lokasi acara atau hubungi panitia untuk
-                pengambilan kado Anda.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
