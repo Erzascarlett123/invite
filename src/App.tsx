@@ -1,13 +1,19 @@
 import React, { useState, ReactNode } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+
 import LandingPage from "./pages/landingPage";
-import Gallery from "./pages/gallery"
+import Gallery from "./pages/gallery";
+import Contact from "./pages/contact";
+import Admin from "./pages/admin/admin";
+import ArticleAdmin from "./pages/admin/article";
+import GalleryAdmin from "./pages/admin/galleryAdmin";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import AdminLayout from "./components/AdminLayout";
 
-const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
+const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation();
-  const hideNavbar = location.pathname === '/login'; // Sembunyikan navbar di halaman tertentu (misalnya login)
+  const hideNavbar = location.pathname === "/login"; // misal
   const [darkMode, setDarkMode] = useState(false);
 
   return (
@@ -22,12 +28,59 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
 const App: React.FC = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/gallery" element={<Gallery/>} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* Layout User */}
+        <Route
+          path="/"
+          element={
+            <UserLayout>
+              <LandingPage />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/gallery"
+          element={
+            <UserLayout>
+              <Gallery />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <UserLayout>
+              <Contact />
+            </UserLayout>
+          }
+        />
+
+        {/* Layout Admin */}
+        <Route
+          path="/admin"
+          element={
+            <AdminLayout>
+              <Admin />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/gallery"
+          element={
+            <AdminLayout>
+              <GalleryAdmin />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/article"
+          element={
+            <AdminLayout>
+              <ArticleAdmin />
+            </AdminLayout>
+          }
+        />
+      </Routes>
     </Router>
   );
 };

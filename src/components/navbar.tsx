@@ -98,7 +98,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, darkMode }) => {
       <div className="hidden md:flex space-x-8 mt-0"> {/* mt-0 untuk memastikan tidak ada margin di desktop */}
         <Link to="/" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Beranda</Link>
         <Link to="/about" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Tentang Kami</Link>
-        <Link to="/programs" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Program Studi</Link>
         <Link to="/gallery" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Galeri</Link>
         <Link to="/news" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Berita</Link>
         <Link to="/contact" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Kontak</Link>
@@ -109,7 +108,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, darkMode }) => {
         <div className={`md:hidden w-full ${darkMode ? 'bg-gray-800' : 'bg-blue-800'} py-2 mt-4 rounded-b-md`}>
           <Link to="/" className="block text-white px-4 py-2 hover:bg-blue-600 transition duration-300" onClick={closeMobileMenu}>Beranda</Link>
           <Link to="/about" className="block text-white px-4 py-2 hover:bg-blue-600 transition duration-300" onClick={closeMobileMenu}>Tentang Kami</Link>
-          <Link to="/programs" className="block text-white px-4 py-2 hover:bg-blue-600 transition duration-300" onClick={closeMobileMenu}>Program Studi</Link>
           <Link to="/gallery" className="block text-white px-4 py-2 hover:bg-blue-600 transition duration-300" onClick={closeMobileMenu}>Galeri</Link>
           <Link to="/news" className="block text-white px-4 py-2 hover:bg-blue-600 transition duration-300" onClick={closeMobileMenu}>Berita</Link>
           <Link to="/contact" className="block text-white px-4 py-2 hover:bg-blue-600 transition duration-300" onClick={closeMobileMenu}>Kontak</Link>
