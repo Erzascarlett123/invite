@@ -1,6 +1,7 @@
 import React, { useState, ReactNode } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "./pages/landingPage";
+import Gallery from "./pages/gallery"
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/gallery" element={<Gallery/>} />
         </Routes>
       </Layout>
     </Router>

@@ -95,7 +95,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, darkMode }) => {
       </div>
 
       {/* Menu Navigasi Desktop */}
-      <div className="hidden md:flex space-x-10 mt-0"> {/* mt-0 untuk memastikan tidak ada margin di desktop */}
+      <div className="hidden md:flex space-x-8 mt-0"> {/* mt-0 untuk memastikan tidak ada margin di desktop */}
         <Link to="/" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Beranda</Link>
         <Link to="/about" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Tentang Kami</Link>
         <Link to="/programs" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition duration-300 text-lg font-medium`}>Program Studi</Link>
