@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import swal from "sweetalert";
+
 import {
   FaCalendarAlt,
   FaMapMarkerAlt,
   FaGift,
   FaMoneyBillWave,
 } from "react-icons/fa";
-import Image from "../assets/images/masjid.jpeg";
+import Image from "../assets/images/harep.jpeg";
 import SpeakerImage from "../assets/images/ustadz-abdul_220106140902-349.jpg";
 import SpecialGuest1 from "../assets/images/alusan-nu-ieu.jpeg";
 import SpecialGuest2 from "../assets/images/ustadz-abi.jpeg";
@@ -16,14 +16,7 @@ import SpecialGuest3 from "../assets/images/budi.jpeg";
 
 const LandingPage: React.FC = () => {
   // SweetAlert ketika user baru memasuki website
-  useEffect(() => {
-    swal({
-      title: "Utk Pak Erwin",
-      text: "Maaf saya menggunakan Vercel untuk metode hostingnya, karena saya sudah berusaha untuk hosting di GitHub dan ga berhasil2, berujung pusing.",
-      icon: "info",
-      buttons: { confirm: { text: "OK" } },
-    });
-  }, []);
+  
   
 
   // Animasi saat scroll
@@ -61,17 +54,13 @@ const LandingPage: React.FC = () => {
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
           <div className="animate-on-scroll p-8 bg-opacity-90 rounded-lg shadow-xl">
             <h1 className="text-5xl font-bold text-white leading-tight mb-4">
-              Undangan Maulid Nabi
+              SELAMAT DATANG DI WEBSITE POETRA 
             </h1>
             <h2 className="text-2xl font-medium text-white mb-4">
-              Kepada Yth. Bapak Erwin
+                Belajar Secara Efektif, Raih Prestasi Secara Positif
             </h2>
             <p className="text-lg text-white">
-              Mari bersama kita mengenang kelahiran Nabi Muhammad SAW dengan
-              penuh rasa syukur.
-            </p>
-            <p className="text-lg text-white">
-              Semoga kehadiran Bapak/Ibu membawa keberkahan.
+              Berani Bermimpi, Berani Berprestasi
             </p>
           </div>
         </div>
