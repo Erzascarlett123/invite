@@ -58,60 +58,43 @@ const LandingPage: React.FC = () => {
       </div>
 
       {/* Section Info Penceramah */}
-      <section className="py-16 bg-gray-200 animate-on-scroll">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl text-center font-bold mb-8">
-            Informasi Penceramah Kali Ini
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Kolom Kiri */}
-            <div className="md:sticky md:top-8">
-              <div className="p-6 bg-white rounded-lg shadow-xl">
-                <img
-                  src={SpeakerImage}
-                  alt="Penceramah"
-                  className="rounded-lg w-full mb-4"
-                />
-                <h2 className="text-2xl font-bold">Sekolah Poetra Mandiri</h2>
-                <p className="mt-2">
-                  Sekolah Homeschooling Poetra Mandiri adalah lembaga pendidikan alternatif yang berdiri untuk menjawab kebutuhan belajar anak-anak dengan pendekatan yang lebih personal, fleksibel, dan menyeluruh. Kami melayani peserta didik dari tingkat SD, SMP, hingga SMA, termasuk anak-anak berkebutuhan khusus atau disabilitas.
-                </p>
-                <br></br>
-                <p>
-                  Melalui program pembelajaran yang di sesuaikan dengan pontensi yang di miliki masing-masing siswa/i, sekola ini menciptakan suasana belajar yang nyaman, dan menyenangkan. Didukung juga oleh tenaga pendidik yang berpengalaman dan profesional serta kurikulum yang inovatif, sekolah Homeschooling Poetra Mandiri juga mampu membentuk karakter generasi yang mandiri, dan mampu bersaing secara global.
-                </p>
-              </div>
-            </div>
-            {/* Kolom Kanan */}
-            <div>
-              <div className="p-6 bg-white rounded-lg shadow-xl">
-                <div className="mb-6">
-                  <iframe
-                    className="w-full h-64 md:h-80 rounded-lg shadow-lg"
-                    src="https://www.youtube.com/embed/0HiNAOKAF9Y?si=P33OH4AXJY4eoBIQ"
-                    title="Video Penceramah"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-                <h2 className="text-2xl font-bold mb-2">
-                  Informasi Ustadz Abdul Somad
-                </h2>
-                <p>
-                  Ustadz Abdul Somad telah berdakwah selama lebih dari 20 tahun,
-                  menjadi salah satu penceramah terkemuka di Indonesia. Beliau
-                  menyampaikan pesan-pesan agama Islam dengan penuh semangat dan
-                  mendalam, yang mampu memberi pencerahan kepada banyak umat. Beberapa
-                  topik yang sering beliau angkat meliputi pentingnya menjaga akhlak mulia,
-                  memperkuat ukhuwah Islamiyah, serta memahami prinsip-prinsip keadilan dalam
-                  ajaran Islam.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Section Info Penceramah */}
+<section className="py-5 bg-gray-200 animate-on-scroll">
+  <div className="container mx-auto px-2">
+    <h2 className="text-3xl text-center font-bold mb-12">
+      Informasi Penceramah Kali Ini
+    </h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+      
+      {/* Foto Penceramah */}
+      <div className="flex justify-center">
+        <img
+          src={SpeakerImage}
+          alt="Penceramah"
+          className="rounded-lg w-full max-w-md shadow-lg"
+        />
+      </div>
+
+      {/* Teks Deskripsi */}
+      <div className="bg-white p-4 rounded-lg shadow-xl text-justify">
+        <h3 className="text-2xl font-bold mb-1">Sekolah Poetra Mandiri</h3>
+        <p className="mb-2">
+          Sekolah Homeschooling Poetra Mandiri adalah lembaga pendidikan alternatif
+          yang berdiri untuk menjawab kebutuhan belajar anak-anak dengan pendekatan yang
+          lebih personal, fleksibel, dan menyeluruh. Kami melayani peserta didik dari
+          tingkat SD, SMP, hingga SMA, termasuk anak-anak berkebutuhan khusus atau disabilitas.
+        </p>
+        <p>
+          Melalui program pembelajaran yang disesuaikan dengan potensi masing-masing siswa/i,
+          sekolah ini menciptakan suasana belajar yang nyaman dan menyenangkan. Didukung oleh
+          tenaga pendidik profesional serta kurikulum inovatif, Homeschooling Poetra Mandiri
+          berkomitmen membentuk karakter generasi yang mandiri dan mampu bersaing secara global.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Google Maps Section */}
       <div className="py-16 bg-white animate-on-scroll">
