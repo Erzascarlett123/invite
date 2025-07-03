@@ -8,6 +8,7 @@ import {
 
 import LandingPage from "./pages/landingPage";
 import AuthPage from "./pages/login";
+import TentangKami from  "./pages/tentangKami"
 import Gallery from "./pages/gallery";
 import Contact from "./pages/contact";
 import Article from "./pages/article"
@@ -74,6 +75,7 @@ const App: React.FC = () => {
   <Route path="/" element={<UserLayout><LandingPage /></UserLayout>} />
   <Route path="/gallery" element={<UserLayout><Gallery /></UserLayout>} />
   <Route path="/contact" element={<UserLayout><Contact /></UserLayout>} />
+    <Route path="/tentangKami" element={<UserLayout><TentangKami /></UserLayout>} />
   <Route path="/article" element={<UserLayout><Article /></UserLayout>} />
 
   {/* Untuk Admin */}

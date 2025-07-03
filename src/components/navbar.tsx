@@ -62,8 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, darkMode }) => {
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-10">
           <Link to="/" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition text-lg font-medium`}>Beranda</Link>
-          <Link to="/about" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition text-lg font-medium`}>Tentang Kami</Link>
-          <Link to="/programs" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition text-lg font-medium`}>Program Studi</Link>
+          <Link to="/tentangKami" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition text-lg font-medium`}>Tentang Kami</Link>
           <Link to="/gallery" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition text-lg font-medium`}>Galeri</Link>
           <Link to="/article" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition text-lg font-medium`}>Berita</Link>
           <Link to="/contact" className={`${darkMode ? 'text-gray-300' : 'text-white'} hover:text-blue-200 transition text-lg font-medium`}>Kontak</Link>
@@ -85,8 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, darkMode }) => {
       {isMobileMenuOpen && (
         <div className={`${darkMode ? 'bg-gray-800' : 'bg-blue-800'} md:hidden w-full py-2`}>
           <Link to="/" className="block text-white px-4 py-2 hover:bg-blue-600" onClick={closeMobileMenu}>Beranda</Link>
-          <Link to="/about" className="block text-white px-4 py-2 hover:bg-blue-600" onClick={closeMobileMenu}>Tentang Kami</Link>
-          <Link to="/programs" className="block text-white px-4 py-2 hover:bg-blue-600" onClick={closeMobileMenu}>Program Studi</Link>
+          <Link to="/tentangKami" className="block text-white px-4 py-2 hover:bg-blue-600" onClick={closeMobileMenu}>Tentang Kami</Link>
           <Link to="/gallery" className="block text-white px-4 py-2 hover:bg-blue-600" onClick={closeMobileMenu}>Galeri</Link>
           <Link to="/article" className="block text-white px-4 py-2 hover:bg-blue-600" onClick={closeMobileMenu}>Berita</Link>
           <Link to="/contact" className="block text-white px-4 py-2 hover:bg-blue-600" onClick={closeMobileMenu}>Kontak</Link>

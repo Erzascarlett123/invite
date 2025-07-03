@@ -28,9 +28,14 @@ export default function GalleryPage() {
   }, []);
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-8">Galeri Kegiatan</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="pt-24 px-6 pb-10 min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
+ <h1 className="text-4xl text-center font-bold text-cyan-400 drop-shadow-md">
+          Gallery
+        </h1>
+        <p className="text-gray-300 mt-2 text-center text-sm">
+          Temukan beragam artikel menarik dari Poetra Mandiri Foundation yang
+          informatif, edukatif, dan menginspirasi.
+        </p>      <div className=" p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {items.map((item) => (
           <div
             key={item.id}
@@ -39,8 +44,8 @@ export default function GalleryPage() {
             <img src={item.gambar_url} alt={item.nama} className="w-full h-48 object-cover" />
             <div className="p-4">
               <h2 className="text-lg font-bold">{item.nama}</h2>
-              <p className="text-sm text-gray-600">{item.deskripsi}</p>
-              <span className="text-xs text-gray-400">Kategori: {item.kategori}</span>
+              <p className="text-sm text-black">{item.deskripsi}</p>
+              <span className="text-xs text-black">Kategori: {item.kategori}</span>
             </div>
           </div>
         ))}
