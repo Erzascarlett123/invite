@@ -1,11 +1,9 @@
-// File: src/pages/admin/galleryAdmin.tsx
-
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
 interface Galeri {
   id: string;
-  nama: string;
+  judul: string;
   deskripsi: string;
   gambar_url: string;
   kategori: string;
@@ -14,11 +12,14 @@ interface Galeri {
 export default function GalleryAdmin() {
   const [galeriList, setGaleriList] = useState<Galeri[]>([]);
   const [form, setForm] = useState({
-    nama: "",
+    id: "",
+    judul: "",
     deskripsi: "",
     kategori: "",
     file: null as File | null,
   });
+  const [editing, setEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const fetchGaleri = async () => {
     const { data, error } = await supabase
@@ -34,39 +35,75 @@ export default function GalleryAdmin() {
   };
 
   const handleUpload = async () => {
-    if (!form.file) return alert("Pilih gambar terlebih dahulu");
+    const { id, judul, deskripsi, kategori, file } = form;
 
-    const filename = `${Date.now()}-${form.file.name}`;
-    const { error: uploadError } = await supabase.storage
-      .from("galerry")
-      .upload(filename, form.file);
-
-    if (uploadError) return alert("Gagal upload gambar");
-
-    const { data: urlData } = supabase.storage.from("galerry").getPublicUrl(filename);
-
-    const { error: insertError } = await supabase.from("galeri").insert({
-      nama: form.nama,
-      deskripsi: form.deskripsi,
-      kategori: form.kategori,
-      gambar_url: urlData.publicUrl,
-    });
-
-    if (insertError) {
-      alert("Gagal menyimpan data galeri");
-    } else {
-      setForm({ nama: "", deskripsi: "", kategori: "", file: null });
-      fetchGaleri();
+    if (!judul.trim() || !deskripsi.trim() || !kategori.trim() || (!file && !editing)) {
+      alert("Harap lengkapi semua data.");
+      return;
     }
+
+    setLoading(true);
+    let imageUrl = "";
+
+    if (file) {
+      const filename = `${Date.now()}-${file.name}`;
+      const { error: uploadError } = await supabase.storage
+        .from("galerry")
+        .upload(filename, file);
+
+      if (uploadError) {
+        alert("Gagal mengupload gambar: " + uploadError.message);
+        setLoading(false);
+        return;
+      }
+
+      const { data } = supabase.storage.from("galerry").getPublicUrl(filename);
+      imageUrl = data.publicUrl;
+    }
+
+    if (editing) {
+      const { error: updateError } = await supabase
+        .from("galeri")
+        .update({
+          judul,
+          deskripsi,
+          kategori,
+          ...(file && { gambar_url: imageUrl }),
+        })
+        .eq("id", id);
+
+      if (updateError) alert("Gagal mengupdate data: " + updateError.message);
+      else alert("Data berhasil diperbarui!");
+    } else {
+      const { error: insertError } = await supabase.from("galeri").insert({
+        judul,
+        deskripsi,
+        kategori,
+        gambar_url: imageUrl,
+      });
+
+      if (insertError) alert("Gagal menambahkan data: " + insertError.message);
+      else alert("Galeri berhasil ditambahkan!");
+    }
+
+    setForm({ id: "", judul: "", deskripsi: "", kategori: "", file: null });
+    setEditing(false);
+    fetchGaleri();
+    setLoading(false);
+  };
+
+  const handleEdit = (item: Galeri) => {
+    setForm({ ...item, file: null });
+    setEditing(true);
   };
 
   const handleDelete = async (id: string) => {
+    const confirmDelete = window.confirm("Yakin ingin menghapus galeri ini?");
+    if (!confirmDelete) return;
+
     const { error } = await supabase.from("galeri").delete().eq("id", id);
-    if (error) {
-      alert("Gagal menghapus galeri");
-    } else {
-      fetchGaleri();
-    }
+    if (error) alert("Gagal menghapus: " + error.message);
+    else fetchGaleri();
   };
 
   useEffect(() => {
@@ -74,72 +111,107 @@ export default function GalleryAdmin() {
   }, []);
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Manajemen Galeri</h2>
+    <div className="p-6 bg-gradient-to-br from-gray-900 via-black to-gray-800 min-h-screen">
+      <h2 className="text-3xl font-bold text-white mb-8 text-center">
+        Manajemen Galeri
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Form Tambah Galeri */}
-        <div className="bg-white p-6 rounded shadow-md space-y-4">
+        {/* Form */}
+        <div className="bg-white p-6 rounded shadow space-y-4">
           <input
             type="text"
-            placeholder="Nama"
+            placeholder="Judul Galeri"
             className="w-full p-2 border rounded"
-            value={form.nama}
-            onChange={(e) => setForm({ ...form, nama: e.target.value })}
+            value={form.judul}
+            onChange={(e) => setForm({ ...form, judul: e.target.value })}
           />
-          <input
-            type="text"
-            placeholder="Kategori (SD/SMP/SMA)"
+
+          <select
             className="w-full p-2 border rounded"
             value={form.kategori}
             onChange={(e) => setForm({ ...form, kategori: e.target.value })}
-          />
+          >
+            <option value="">Pilih Kategori</option>
+            <option value="SD">SD</option>
+            <option value="SMP">SMP</option>
+            <option value="SMA">SMA</option>
+            <option value="For All">For All</option>
+          </select>
+
           <textarea
-            placeholder="Deskripsi"
+            placeholder="Deskripsi Galeri"
             className="w-full p-2 border rounded"
             rows={4}
             value={form.deskripsi}
             onChange={(e) => setForm({ ...form, deskripsi: e.target.value })}
           />
+
           <input
             type="file"
-            className="w-full"
             accept="image/*"
-            onChange={(e) => setForm({ ...form, file: e.target.files?.[0] || null })}
+            className="w-full"
+            onChange={(e) =>
+              setForm({ ...form, file: e.target.files?.[0] || null })
+            }
           />
+
           <button
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
             onClick={handleUpload}
+            disabled={loading}
+            className={`w-full py-2 rounded text-white font-semibold transition ${
+              loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+            }`}
           >
-            Tambah Galeri
+            {editing
+              ? loading
+                ? "Menyimpan..."
+                : "Perbarui Galeri"
+              : loading
+              ? "Mengunggah..."
+              : "Tambah Galeri"}
           </button>
         </div>
 
-        {/* Daftar Galeri */}
+        {/* List Galeri */}
         <div className="space-y-4">
-          {galeriList.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded shadow-md overflow-hidden hover:shadow-lg transition"
-            >
-              <img
-                src={item.gambar_url}
-                alt={item.nama}
-                className="h-40 w-full object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold mb-1">{item.nama}</h3>
-                <p className="text-gray-700 text-sm mb-1">{item.deskripsi}</p>
-                <span className="text-xs text-gray-500">Kategori: {item.kategori}</span>
-                <button
-                  onClick={() => handleDelete(item.id)}
-                  className="block mt-3 text-sm text-red-500 hover:underline"
-                >
-                  Hapus
-                </button>
+          {galeriList.length === 0 ? (
+            <p className="text-gray-300">Belum ada galeri.</p>
+          ) : (
+            galeriList.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white rounded shadow overflow-hidden hover:shadow-lg transition"
+              >
+                <img
+                  src={item.gambar_url}
+                  alt={item.judul}
+                  className="h-40 w-full object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-lg font-bold">{item.judul}</h3>
+                  <p className="text-sm text-gray-600">{item.deskripsi}</p>
+                  <p className="text-xs text-gray-500 mb-2">
+                    Kategori: {item.kategori}
+                  </p>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => handleEdit(item)}
+                      className="text-blue-600 text-sm hover:underline"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="text-red-600 text-sm hover:underline"
+                    >
+                      Hapus
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
