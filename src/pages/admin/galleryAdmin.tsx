@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import Swal from "sweetalert2";
 
 interface Galeri {
   id: string;
@@ -28,7 +29,7 @@ export default function GalleryAdmin() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("Error fetching galeri:", error);
+      Swal.fire("Gagal Memuat", error.message, "error");
     } else if (data) {
       setGaleriList(data);
     }
@@ -38,58 +39,69 @@ export default function GalleryAdmin() {
     const { id, judul, deskripsi, kategori, file } = form;
 
     if (!judul.trim() || !deskripsi.trim() || !kategori.trim() || (!file && !editing)) {
-      alert("Harap lengkapi semua data.");
+      Swal.fire("Peringatan", "Harap lengkapi semua data", "warning");
       return;
     }
 
     setLoading(true);
     let imageUrl = "";
 
-    if (file) {
-      const filename = `${Date.now()}-${file.name}`;
-      const { error: uploadError } = await supabase.storage
-        .from("galerry")
-        .upload(filename, file);
+    try {
+      if (file) {
+        const filename = `${Date.now()}-${file.name}`;
+        const { error: uploadError } = await supabase.storage
+          .from("galerry")
+          .upload(filename, file);
 
-      if (uploadError) {
-        alert("Gagal mengupload gambar: " + uploadError.message);
-        setLoading(false);
-        return;
+        if (uploadError) {
+          Swal.fire("Upload Gagal", uploadError.message, "error");
+          setLoading(false);
+          return;
+        }
+
+        const { data } = supabase.storage.from("galerry").getPublicUrl(filename);
+        imageUrl = data.publicUrl;
       }
 
-      const { data } = supabase.storage.from("galerry").getPublicUrl(filename);
-      imageUrl = data.publicUrl;
-    }
+      if (editing) {
+        const { error } = await supabase
+          .from("galeri")
+          .update({
+            judul,
+            deskripsi,
+            kategori,
+            ...(file && { gambar_url: imageUrl }),
+          })
+          .eq("id", id);
 
-    if (editing) {
-      const { error: updateError } = await supabase
-        .from("galeri")
-        .update({
+        if (error) {
+          Swal.fire("Gagal Update", error.message, "error");
+        } else {
+          Swal.fire("Berhasil", "Galeri berhasil diperbarui", "success");
+        }
+      } else {
+        const { error } = await supabase.from("galeri").insert({
           judul,
           deskripsi,
           kategori,
-          ...(file && { gambar_url: imageUrl }),
-        })
-        .eq("id", id);
+          gambar_url: imageUrl,
+        });
 
-      if (updateError) alert("Gagal mengupdate data: " + updateError.message);
-      else alert("Data berhasil diperbarui!");
-    } else {
-      const { error: insertError } = await supabase.from("galeri").insert({
-        judul,
-        deskripsi,
-        kategori,
-        gambar_url: imageUrl,
-      });
+        if (error) {
+          Swal.fire("Gagal Tambah", error.message, "error");
+        } else {
+          Swal.fire("Berhasil", "Galeri berhasil ditambahkan", "success");
+        }
+      }
 
-      if (insertError) alert("Gagal menambahkan data: " + insertError.message);
-      else alert("Galeri berhasil ditambahkan!");
+      setForm({ id: "", judul: "", deskripsi: "", kategori: "", file: null });
+      setEditing(false);
+      fetchGaleri();
+    } catch (err) {
+      Swal.fire("Kesalahan", "Terjadi error tak terduga", "error");
+    } finally {
+      setLoading(false);
     }
-
-    setForm({ id: "", judul: "", deskripsi: "", kategori: "", file: null });
-    setEditing(false);
-    fetchGaleri();
-    setLoading(false);
   };
 
   const handleEdit = (item: Galeri) => {
@@ -98,12 +110,24 @@ export default function GalleryAdmin() {
   };
 
   const handleDelete = async (id: string) => {
-    const confirmDelete = window.confirm("Yakin ingin menghapus galeri ini?");
-    if (!confirmDelete) return;
+    const confirm = await Swal.fire({
+      title: "Yakin ingin menghapus?",
+      text: "Data galeri akan dihapus secara permanen.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
+    });
+
+    if (!confirm.isConfirmed) return;
 
     const { error } = await supabase.from("galeri").delete().eq("id", id);
-    if (error) alert("Gagal menghapus: " + error.message);
-    else fetchGaleri();
+    if (error) {
+      Swal.fire("Gagal Hapus", error.message, "error");
+    } else {
+      Swal.fire("Terhapus", "Galeri berhasil dihapus", "success");
+      fetchGaleri();
+    }
   };
 
   useEffect(() => {

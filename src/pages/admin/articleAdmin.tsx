@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase";
+import Swal from "sweetalert2";
 
 interface Artikel {
   id: string;
@@ -43,7 +44,11 @@ export default function ArticleAdmin() {
       .select("*")
       .order("created_at", { ascending: false });
 
-    if (!error && data) setArtikelList(data);
+    if (error) {
+      Swal.fire("Gagal Memuat", error.message, "error");
+    } else {
+      setArtikelList(data);
+    }
   };
 
   useEffect(() => {
@@ -60,88 +65,114 @@ export default function ArticleAdmin() {
 
   const handleSubmit = async () => {
     if (!form.judul || !form.isi || !form.kategori || !form.link) {
-      alert("Harap lengkapi semua data.");
+      Swal.fire("Peringatan", "Harap lengkapi semua data", "warning");
       return;
     }
 
     setLoading(true);
     let imageUrl = form.gambar_url;
 
-    if (form.file) {
-      const filename = `${Date.now()}-${form.file.name}`;
+    try {
+      if (form.file) {
+        const filename = `${Date.now()}-${form.file.name}`;
 
-      // Cek apakah file sudah ada
-      const { data: existingFile } = await supabase
-        .storage
-        .from("article")
-        .list("", { search: filename });
+        // Cek duplikat
+        const { data: existingFile } = await supabase
+          .storage
+          .from("article")
+          .list("", { search: filename });
 
-      if (existingFile && existingFile.length > 0) {
-        alert("File dengan nama tersebut sudah ada. Harap pilih file lain.");
-        setLoading(false);
-        return;
+        if (existingFile && existingFile.length > 0) {
+          Swal.fire("File Ada", "Nama file sudah digunakan. Harap ganti nama file.", "error");
+          setLoading(false);
+          return;
+        }
+
+        if (editing && form.gambar_url) {
+          await deleteOldImage(form.gambar_url);
+        }
+
+        const { error: uploadError } = await supabase
+          .storage
+          .from("article")
+          .upload(filename, form.file);
+
+        if (uploadError) {
+          Swal.fire("Upload Gagal", uploadError.message, "error");
+          setLoading(false);
+          return;
+        }
+
+        const { data: urlData } = supabase.storage.from("article").getPublicUrl(filename);
+        imageUrl = urlData.publicUrl;
       }
 
-      // Hapus gambar lama jika sedang edit
-      if (editing && form.gambar_url) {
-        await deleteOldImage(form.gambar_url);
-      }
+      if (editing) {
+        const { error } = await supabase
+          .from("artikel")
+          .update({
+            judul: form.judul,
+            isi: form.isi,
+            kategori: form.kategori,
+            link: form.link,
+            gambar_url: imageUrl,
+          })
+          .eq("id", form.id);
 
-      const { error: uploadError } = await supabase
-        .storage
-        .from("article")
-        .upload(filename, form.file);
-
-      if (uploadError) {
-        alert("Gagal upload gambar: " + uploadError.message);
-        setLoading(false);
-        return;
-      }
-
-      const { data: urlData } = supabase.storage
-        .from("article")
-        .getPublicUrl(filename);
-      imageUrl = urlData.publicUrl;
-    }
-
-    if (editing) {
-      const { error } = await supabase
-        .from("artikel")
-        .update({
+        if (error) {
+          Swal.fire("Gagal Update", error.message, "error");
+        } else {
+          Swal.fire("Berhasil", "Artikel diperbarui", "success");
+        }
+      } else {
+        const { error } = await supabase.from("artikel").insert({
           judul: form.judul,
           isi: form.isi,
           kategori: form.kategori,
           link: form.link,
           gambar_url: imageUrl,
-        })
-        .eq("id", form.id);
+        });
 
-      if (error) alert("Gagal memperbarui artikel: " + error.message);
-      else alert("Artikel berhasil diperbarui");
-    } else {
-      const { error } = await supabase.from("artikel").insert({
-        judul: form.judul,
-        isi: form.isi,
-        kategori: form.kategori,
-        link: form.link,
-        gambar_url: imageUrl,
-      });
+        if (error) {
+          Swal.fire("Gagal Tambah", error.message, "error");
+        } else {
+          Swal.fire("Berhasil", "Artikel berhasil ditambahkan", "success");
+        }
+      }
 
-      if (error) alert("Gagal menambahkan artikel: " + error.message);
-      else alert("Artikel berhasil ditambahkan");
+      resetForm();
+      fetchArtikel();
+    } catch (err) {
+      Swal.fire("Kesalahan", "Terjadi kesalahan tak terduga", "error");
+    } finally {
+      setLoading(false);
     }
-
-    resetForm();
-    fetchArtikel();
-    setLoading(false);
   };
 
   const handleDelete = async (item: Artikel) => {
-    if (!confirm("Yakin ingin menghapus artikel ini?")) return;
+    const confirm = await Swal.fire({
+      title: "Yakin ingin menghapus?",
+      text: "Artikel dan gambar akan dihapus permanen.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Ya, hapus!",
+      cancelButtonText: "Batal",
+    });
 
-    await deleteOldImage(item.gambar_url);
-    await supabase.from("artikel").delete().eq("id", item.id);
-    fetchArtikel();
+    if (!confirm.isConfirmed) return;
+
+    try {
+      await deleteOldImage(item.gambar_url);
+      const { error } = await supabase.from("artikel").delete().eq("id", item.id);
+      if (error) {
+        Swal.fire("Gagal Hapus", error.message, "error");
+      } else {
+        Swal.fire("Terhapus", "Artikel berhasil dihapus", "success");
+        fetchArtikel();
+      }
+    } catch {
+      Swal.fire("Gagal", "Terjadi kesalahan saat menghapus", "error");
+    }
   };
 
   const handleEdit = (item: Artikel) => {

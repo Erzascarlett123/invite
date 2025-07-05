@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import Image from "../assets/images/harep.jpeg";
 import { FaInstagram, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import Hero from "../components/heroSection";
 
 const LandingPage: React.FC = () => {
   // Animasi saat scroll
@@ -28,50 +28,28 @@ const LandingPage: React.FC = () => {
   return (
     <div className="h-full text-gray-800">
       {/* Hero Section */}
-      <div
-        className="relative p-8 bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${Image})` }}
-      >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black opacity-75"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
-          <div className="animate-on-scroll p-8 bg-opacity-90 rounded-lg shadow-xl">
-            <h1 className="text-5xl font-bold text-white leading-tight mb-4">
-              SELAMAT DATANG DI WEBSITE POETRA
-            </h1>
-            <h2 className="text-2xl font-medium text-white mb-4">
-              Belajar Secara Efektif, Raih Prestasi Secara Positif
-            </h2>
-            <p className="text-lg text-white">
-              Berani Bermimpi, Berani Berprestasi
-            </p>
-          </div>
-        </div>
-      </div>
-
+      <Hero />
 
       {/* Section Info Penceramah */}
       <section className="py-16 bg-gray-200 animate-on-scroll">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl text-center font-bold mb-8">
-            Informasi Penceramah Kali Ini
-          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Kolom Kiri */}
             <div className="md:sticky md:top-8">
               <div className="p-6 bg-white rounded-lg shadow-xl">
-                <img
-                  src={SpeakerImage}
-                  alt="Penceramah"
-                  className="rounded-lg w-full mb-4"
-                />
                 <h2 className="text-2xl font-bold">Sekolah Poetra Mandiri</h2>
                 <p className="mt-2">
-                  Sekolah Homeschooling Poetra Mandiri adalah lembaga pendidikan alternatif yang berdiri untuk menjawab kebutuhan belajar anak-anak dengan pendekatan yang lebih personal, fleksibel, dan menyeluruh. Kami melayani peserta didik dari tingkat SD, SMP, hingga SMA, termasuk anak-anak berkebutuhan khusus atau disabilitas.
+                Sekolah Poetra Mandiri (NPSN: P9948093) adalah lembaga pendidikan
+                 berakreditasi B yang berkomitmen membentuk generasi cerdas, tangguh, 
+                 dan berkarakter. Kami menggabungkan keunggulan Kurikulum 2013 dan Kurikulum 
+                 Merdeka dalam pembelajaran yang menyeluruh, adaptif, dan relevan dengan perkembangan zaman.
                 </p>
-                <br></br>
+                <br />
                 <p>
-                  Melalui program pembelajaran yang di sesuaikan dengan pontensi yang di miliki masing-masing siswa/i, sekola ini menciptakan suasana belajar yang nyaman, dan menyenangkan. Didukung juga oleh tenaga pendidik yang berpengalaman dan profesional serta kurikulum yang inovatif, sekolah Homeschooling Poetra Mandiri juga mampu membentuk karakter generasi yang mandiri, dan mampu bersaing secara global.
+                Dengan suasana belajar yang hangat dan inklusif, guru-guru kami hadir sebagai pembimbing
+                 sekaligus sahabat bagi siswa dalam proses belajar mereka. Kami juga terus berinovasi melalui
+                  pemanfaatan teknologi, pembelajaran berbasis proyek, serta media yang interaktif dan modern agar
+                   setiap anak dapat tumbuh sesuai potensinya dan siap menghadapi tantangan masa depan.
                 </p>
               </div>
             </div>
@@ -95,10 +73,10 @@ const LandingPage: React.FC = () => {
                   Ustadz Abdul Somad telah berdakwah selama lebih dari 20 tahun,
                   menjadi salah satu penceramah terkemuka di Indonesia. Beliau
                   menyampaikan pesan-pesan agama Islam dengan penuh semangat dan
-                  mendalam, yang mampu memberi pencerahan kepada banyak umat. Beberapa
-                  topik yang sering beliau angkat meliputi pentingnya menjaga akhlak mulia,
-                  memperkuat ukhuwah Islamiyah, serta memahami prinsip-prinsip keadilan dalam
-                  ajaran Islam.
+                  mendalam, yang mampu memberi pencerahan kepada banyak umat.
+                  Beberapa topik yang sering beliau angkat meliputi pentingnya
+                  menjaga akhlak mulia, memperkuat ukhuwah Islamiyah, serta
+                  memahami prinsip-prinsip keadilan dalam ajaran Islam.
                 </p>
               </div>
             </div>
@@ -123,48 +101,49 @@ const LandingPage: React.FC = () => {
         </div>
 
         {/* Section Kontak & Media Sosial */}
-        <section className="relative p-10 py-16 bg-white dark:bg-white  animate-on-scroll">
+        <section className="relative p-10 py-16 bg-white dark:bg-white animate-on-scroll">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Kolom Kiri */}
+            <div>
+              <h2 className="text-3xl font-bold text-black dark:text-black mb-4">
+                Hubungi Kami
+              </h2>
+              <p className="text-black dark:text-black">
+                Kami siap menjawab pertanyaan dan kebutuhan Anda. Silakan
+                hubungi kami melalui media sosial atau layanan pesan berikut.
+              </p>
+            </div>
 
-      <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        {/* Kolom Kiri */}
-        <div>
-          <h2 className="text-3xl font-bold text-black dark:text-black mb-4">Hubungi Kami</h2>
-          <p className="text-black dark:text-black">
-            Kami siap menjawab pertanyaan dan kebutuhan Anda. Silakan hubungi kami melalui media sosial atau layanan pesan berikut.
-          </p>
-        </div>
-
-    {/* Kolom Kanan: Ikon Media Sosial */}
-    <div className="flex justify-center md:justify-end items-center gap-6">
-      <a
-        href="https://www.instagram.com/poetramandiri.sch"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-pink-600 hover:text-pink-400 transition-transform transform hover:scale-110 text-3xl"
-        aria-label="Instagram"
-      >
-        <FaInstagram />
-      </a>
-      <a
-        href="mailto:poetramandiri.sch@gmail.com"
-        className="text-red-600 hover:text-red-400 transition-transform transform hover:scale-110 text-3xl"
-        aria-label="Gmail"
-      >
-        <FaEnvelope />
-      </a>
-      <a
-        href="https://wa.me/6281234567890"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-green-600 hover:text-green-400 transition-transform transform hover:scale-110 text-3xl"
-        aria-label="WhatsApp"
-      >
-        <FaWhatsapp />
-      </a>
-    </div>
-  </div>
-</section>
-
+            {/* Kolom Kanan: Ikon Media Sosial */}
+            <div className="flex justify-center md:justify-end items-center gap-6">
+              <a
+                href="https://www.instagram.com/poetramandiri.sch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-pink-600 hover:text-pink-400 transition-transform transform hover:scale-110 text-3xl"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="mailto:poetramandiri.sch@gmail.com"
+                className="text-red-600 hover:text-red-400 transition-transform transform hover:scale-110 text-3xl"
+                aria-label="Gmail"
+              >
+                <FaEnvelope />
+              </a>
+              <a
+                href="https://wa.me/6281234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-600 hover:text-green-400 transition-transform transform hover:scale-110 text-3xl"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp />
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

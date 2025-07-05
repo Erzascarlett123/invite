@@ -22,6 +22,14 @@ export default function SidebarAdmin() {
           Galeri
         </NavLink>
         <NavLink
+          to="/admin/heroAdmin"
+          className={({ isActive }) =>
+            isActive ? "text-cyan-400 font-semibold" : "hover:text-cyan-300"
+          }
+        >
+          Hero
+        </NavLink>
+        <NavLink
           to="/admin/article"
           className={({ isActive }) =>
             isActive ? "text-cyan-400 font-semibold" : "hover:text-cyan-300"

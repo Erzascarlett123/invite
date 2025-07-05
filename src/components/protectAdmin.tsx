@@ -17,7 +17,8 @@ export default function ProtectedAdminRoute({ children }: Props) {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        navigate("/"); // Belum login
+        navigate("/");
+        setChecking(false);
         return;
       }
 
@@ -28,18 +29,23 @@ export default function ProtectedAdminRoute({ children }: Props) {
         .single();
 
       if (error || !data || data.role !== "admin") {
-        navigate("/"); // Bukan admin
+        navigate("/");
+        setChecking(false);
+        return;
       }
 
-      setChecking(false); // Aman
+      setChecking(false); // Berhasil lolos semua pengecekan
     };
 
     checkAdmin();
   }, [navigate]);
 
-
   if (checking) {
-    return <div className="text-center text-white mt-10">Memeriksa akses...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+        <p className="animate-pulse">Memeriksa akses admin...</p>
+      </div>
+    );
   }
 
   return <>{children}</>;

@@ -26,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, darkMode }) => {
       className={`
         fixed w-full top-0 z-50 transition-all duration-300 ease-in-out
         ${isScrolled ? 'py-2 shadow-lg' : 'py-4'}
-        ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-r from-blue-700 to-blue-600'}
+        ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-r from-green-700 to-blue-600'}
       `}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
