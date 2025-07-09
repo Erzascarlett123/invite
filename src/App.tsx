@@ -9,8 +9,9 @@ import {
 import LandingPage from "./pages/landingPage";
 import AuthPage from "./pages/login";
 import TentangKami from  "./pages/tentangKami"
-import Gallery from "./pages/gallery";
+import Gallery from "./pages/PPDB-ONLINE";
 import Contact from "./pages/contact";
+import Eskul from "./pages/ekstrakurikuler"
 import Article from "./pages/article"
 import Admin from "./pages/admin/admin";
 import ArticleAdmin from "./pages/admin/articleAdmin";
@@ -74,7 +75,8 @@ const App: React.FC = () => {
         <Route path="/admin/login" element={<AuthPage />} />
   {/* Untuk User */}
   <Route path="/" element={<UserLayout><LandingPage /></UserLayout>} />
-  <Route path="/gallery" element={<UserLayout><Gallery /></UserLayout>} />
+  <Route path="/Ekstrakurikuler" element={<UserLayout><Eskul /></UserLayout>} />
+  <Route path="/PPDB-ONLINE" element={<UserLayout><Gallery /></UserLayout>} />
   <Route path="/contact" element={<UserLayout><Contact /></UserLayout>} />
     <Route path="/tentangKami" element={<UserLayout><TentangKami /></UserLayout>} />
   <Route path="/article" element={<UserLayout><Article /></UserLayout>} />

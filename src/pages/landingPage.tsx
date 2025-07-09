@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { FaInstagram, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import Hero from "../components/heroSection";
+import GALER from "../components/galerr"
 
 const LandingPage: React.FC = () => {
   // Animasi saat scroll
@@ -57,32 +58,31 @@ const LandingPage: React.FC = () => {
             <div>
               <div className="p-6 bg-white rounded-lg shadow-xl">
                 <div className="mb-6">
-                  <iframe
-                    className="w-full h-64 md:h-80 rounded-lg shadow-lg"
-                    src="https://www.youtube.com/embed/0HiNAOKAF9Y?si=P33OH4AXJY4eoBIQ"
-                    title="Video Penceramah"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+               <GALER />
                 </div>
-                <h2 className="text-2xl font-bold mb-2">
-                  Informasi Ustadz Abdul Somad
-                </h2>
-                <p>
-                  Ustadz Abdul Somad telah berdakwah selama lebih dari 20 tahun,
-                  menjadi salah satu penceramah terkemuka di Indonesia. Beliau
-                  menyampaikan pesan-pesan agama Islam dengan penuh semangat dan
-                  mendalam, yang mampu memberi pencerahan kepada banyak umat.
-                  Beberapa topik yang sering beliau angkat meliputi pentingnya
-                  menjaga akhlak mulia, memperkuat ukhuwah Islamiyah, serta
-                  memahami prinsip-prinsip keadilan dalam ajaran Islam.
-                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Section Ajakan Bergabung */}
+<section className="py-16 bg-green-100 animate-on-scroll">
+  <div className="max-w-4xl mx-auto text-center px-6">
+    <h2 className="text-3xl font-bold mb-4 text-green-800">Berminat Bergabung Dengan Kami?</h2>
+    <p className="text-lg text-green-700 mb-6">
+      Jadilah bagian dari Sekolah Poetra Mandiri dan wujudkan masa depan yang gemilang bersama kami.
+      Daftarkan dirimu sekarang melalui layanan PPDB Online kami.
+    </p>
+    <a
+      href="/PPDB-ONLINE"
+      className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
+    >
+      Daftar Sekarang
+    </a>
+  </div>
+</section>
+
 
       {/* Google Maps Section */}
       <div className="py-16 bg-white animate-on-scroll">

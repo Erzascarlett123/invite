@@ -6,7 +6,7 @@ const About = () => {
           Tentang Kami
         </h1>
         <p className="text-gray-300 text-center mb-10">
-          Sekilas informasi mengenai visi, misi, dan tujuan Sekolah Homeschooling Poetra Mandiri.
+        Belajar secara efektif, Raih prestasi secara positif
         </p>
 
         {/* Deskripsi Singkat */}
@@ -29,7 +29,7 @@ const About = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-semibold text-yellow-400 mb-2">Visi Sekolah</h2>
           <p className="text-gray-300 leading-relaxed">
-            Menjadi pusat pendidikan (sekolah) unggulan dalam membentuk generasi cerdas,
+            Menjadi pusat pendidikan unggulan dalam membentuk generasi cerdas,
             berintegritas, dan berkarakter melalui pembelajaran inklusif dan inovatif.
           </p>
         </section>
