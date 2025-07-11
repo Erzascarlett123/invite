@@ -98,7 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleDarkMode, darkMode }) => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className={`${darkMode ? "bg-gray-800" : "bg-blue-800"} md:hidden w-full py-2 mt-4 rounded-b-md`}>
-          {["Beranda", "Tentang Kami", "PPDB-ONLINE", "Ekstrakurikuler", "Berita", "Kontak"].map(
+          {["Beranda", "Tentang Kami", "PPDB-ONLINE", "Ekstrakurikuler", "Artikel", "Kontak"].map(
             (label, idx) => {
               const link = label === "Beranda" ? "/" : `/${label.replace(" ", "")}`;
               return (
