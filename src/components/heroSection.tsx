@@ -12,10 +12,8 @@ interface HeroContent {
 const HeroSection: React.FC = () => {
   const [heroList, setHeroList] = useState<HeroContent[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const startX = useRef<number | null>(null);
 
-  // Fetch data
   useEffect(() => {
     const fetchHero = async () => {
       const { data, error } = await supabase
@@ -28,7 +26,6 @@ const HeroSection: React.FC = () => {
     fetchHero();
   }, []);
 
-  // Auto slide
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) =>
@@ -38,69 +35,69 @@ const HeroSection: React.FC = () => {
     return () => clearInterval(interval);
   }, [heroList]);
 
-  // Handle drag start (mouse & touch)
-  const handleStart = (x: number) => {
-    startX.current = x;
-  };
-
+  const handleStart = (x: number) => (startX.current = x);
   const handleEnd = (x: number) => {
     if (startX.current === null) return;
     const deltaX = startX.current - x;
-
     if (Math.abs(deltaX) > 50) {
       if (deltaX > 0) {
-        // next
-        setCurrentIndex((prev) =>
-          (prev + 1) % heroList.length
-        );
+        setCurrentIndex((prev) => (prev + 1) % heroList.length);
       } else {
-        // prev
-        setCurrentIndex((prev) =>
-          (prev - 1 + heroList.length) % heroList.length
-        );
+        setCurrentIndex((prev) => (prev - 1 + heroList.length) % heroList.length);
       }
     }
-
     startX.current = null;
   };
 
-  // Mouse & touch events
   const handleMouseDown = (e: React.MouseEvent) => handleStart(e.clientX);
   const handleMouseUp = (e: React.MouseEvent) => handleEnd(e.clientX);
   const handleTouchStart = (e: React.TouchEvent) => handleStart(e.touches[0].clientX);
   const handleTouchEnd = (e: React.TouchEvent) => handleEnd(e.changedTouches[0].clientX);
 
-  if (heroList.length === 0)
+  if (heroList.length === 0) {
     return <div className="text-white text-center mt-10">Memuat Hero...</div>;
+  }
 
   const hero = heroList[currentIndex];
 
   return (
     <div
-      className="relative text-white transition-all duration-500 min-h-screen bg-cover bg-center select-none"
-      style={{
-        backgroundImage: `url(${hero.image_url})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative w-full min-h-screen overflow-hidden select-none"
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black opacity-70"></div>
+      {/* Background Blur */}
+      <div
+        className="absolute inset-0 bg-cover bg-center filter blur-lg scale-110 brightness-75"
+        style={{
+          backgroundImage: `url(${hero.image_url})`,
+          backgroundSize: "cover",
+        }}
+      />
 
-      {/* Teks */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pointer-events-none">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 select-none">
+      {/* Overlay gelap transparan */}
+      <div className="absolute inset-0 bg-black bg-opacity-50" />
+
+      {/* Konten Hero */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+        {/* Gambar utama (fokus) */}
+        <img
+          src={hero.image_url}
+          alt={hero.title}
+          className="max-w-full max-h-[65vh] object-contain rounded-lg shadow-xl transition duration-500"
+        />
+
+        {/* Teks */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white mt-2">
           {hero.title}
         </h1>
-        <h2 className="text-2xl md:text-3xl font-medium text-white mb-4 select-none">
+        <h2 className="text-2xl md:text-3xl font-medium text-white mt-2">
           {hero.subtitle}
         </h2>
         {hero.description && (
-          <p className="text-lg text-gray-200 max-w-2xl select-none">
+          <p className="text-lg text-gray-200 max-w-2xl mt-4">
             {hero.description}
           </p>
         )}

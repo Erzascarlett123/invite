@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Swal from "sweetalert2";
 import {
   FaMapMarkerAlt,
   FaEnvelope,
@@ -17,16 +18,52 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Terima kasih! Pesan Anda telah dikirim.");
-    setForm({ nama: "", email: "", pesan: "" });
+    const { nama, email, pesan } = form;
+
+    if (!nama || !email || !pesan) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Semua kolom wajib diisi!",
+      });
+      return;
+    }
+
+    // Tujuan email
+    const to = "poetramandiri90@gmail.com";
+
+    // Gunakan Gmail Compose URL
+    const gmailComposeURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${encodeURIComponent(
+      `Pesan dari ${nama}`
+    )}&body=${encodeURIComponent(
+      `Nama: ${nama}\nEmail: ${email}\n\nPesan:\n${pesan}`
+    )}`;
+
+    Swal.fire({
+      title: "Buka Gmail...",
+      text: "Anda akan diarahkan ke Gmail untuk mengirim email.",
+      icon: "success",
+      timer: 2000,
+      showConfirmButton: false,
+    }).then(() => {
+      window.open(gmailComposeURL, "_blank");
+      setForm({ nama: "", email: "", pesan: "" });
+    });
   };
 
   return (
-    <section className="min-h-screen px-6 py-16 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+    <section
+      className="min-h-screen px-6 py-16
+      bg-gradient-to-br from-green-900 via-emerald-800 to-teal-800 text-white
+      dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-gray-800 dark:text-gray-200
+      transition-colors duration-700 ease-in-out"
+    >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-        {/* Kiri - Form Kontak */}
+        {/* Formulir Kontak */}
         <div>
-          <h2 className="text-3xl font-bold mb-6">Hubungi Kami</h2>
+          <h2 className="text-3xl font-bold mb-6 text-lime-300 dark:text-cyan-400">
+            Hubungi Kami
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block mb-1">Nama</label>
@@ -36,7 +73,7 @@ export default function ContactPage() {
                 value={form.nama}
                 onChange={handleChange}
                 required
-                className="w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
@@ -47,7 +84,7 @@ export default function ContactPage() {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
@@ -58,7 +95,7 @@ export default function ContactPage() {
                 value={form.pesan}
                 onChange={handleChange}
                 required
-                className="w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <button
@@ -70,46 +107,48 @@ export default function ContactPage() {
           </form>
         </div>
 
-        {/* Kanan - Info Kontak + Maps */}
+        {/* Informasi Kontak dan Maps */}
         <div className="space-y-6">
-          <h3 className="text-2xl font-semibold mb-4">Informasi Kontak</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-yellow-300 dark:text-yellow-400">
+            Informasi Kontak
+          </h3>
 
           <div className="flex items-start gap-4">
-            <FaMapMarkerAlt className="text-xl mt-1 text-blue-500" />
-            <p>RT.03/RW.01, Paledang, Kecamatan Bogor Tengah, Kota Bogor, Jawa Barat 16122</p>
+            <FaMapMarkerAlt className="text-xl mt-1 text-blue-400" />
+            <p>RT.03/RW.01, Paledang, Bogor Tengah, Kota Bogor, 16122</p>
           </div>
 
           <div className="flex items-start gap-4">
-            <FaEnvelope className="text-xl mt-1 text-red-500" />
+            <FaEnvelope className="text-xl mt-1 text-red-400" />
             <a
-              href="mailto:poetramandiri.sch@gmail.com"
+              href="mailto:poetramandiri90@gmail.com"
               className="hover:underline"
             >
-              poetramandiri.sch@gmail.com
+              poetramandiri90@gmail.com
             </a>
           </div>
 
           <div className="flex items-start gap-4">
-            <FaWhatsapp className="text-xl mt-1 text-green-500" />
+            <FaWhatsapp className="text-xl mt-1 text-green-400" />
             <a
-              href="https://wa.me/6287813583248"
+              href="https://wa.me/6287717395496"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
             >
-              +62 812 3456 7890
+              +62 877 1739 5496
             </a>
           </div>
 
           <div className="flex items-start gap-4">
-            <FaInstagram className="text-xl mt-1 text-pink-500" />
+            <FaInstagram className="text-xl mt-1 text-pink-400" />
             <a
               href="https://www.instagram.com/poetramandiriofficial_"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
             >
-              @poetramandiri.sch
+              @poetramandiriofficial_
             </a>
           </div>
 

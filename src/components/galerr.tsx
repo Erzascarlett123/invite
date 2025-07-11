@@ -45,7 +45,7 @@ export default function GaleriSlider() {
   }, []);
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-xl border">
+    <div className="p-6 bg-white rounded-lg shadow-2xl border border-2 border-gray-600">
 
       {galeri.length === 0 ? (
         <p className="text-center text-gray-600">Sedang memuat gambar...</p>
